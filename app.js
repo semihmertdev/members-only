@@ -6,6 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const sequelize = require('./config/database');
 const User = require('./models/user');
+const bcrypt = require('bcrypt'); // Burayı ekleyin
 
 const app = express();
 

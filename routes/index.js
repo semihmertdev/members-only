@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const messageController = require('../controllers/messageController');
+const authController = require('../controllers/authController');
 
 // Tüm kullanıcıların erişebileceği yollar
 router.get('/login', (req, res) => res.render('login'));
@@ -17,7 +19,7 @@ router.get('/join', (req, res) => res.render('join'));
 router.post('/join', authController.joinClub);
 
 router.get('/logout', (req, res) => {
-  req.logout();
+  req.logout(); // Geri çağırma fonksiyonu olmadan
   res.redirect('/');
 });
 
