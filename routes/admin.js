@@ -8,5 +8,7 @@ const authController = require('../controllers/authController');
 router.get('/dashboard', authController.isAdmin, adminController.dashboard);
 router.get('/users', authController.isAdmin, adminController.listUsers);
 router.post('/update-user/:id', authController.isAdmin, adminController.updateUser);
+router.post('/delete-user/:id', authController.isAdmin, adminController.deleteUser);
+
 
 module.exports = router;

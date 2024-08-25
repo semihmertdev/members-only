@@ -35,3 +35,20 @@ exports.updateUser = async (req, res) => {
     res.redirect('/admin/users');
   }
 };
+
+exports.deleteUser = async (req, res) => {
+    if (!req.user || !req.user.is_admin) { // Kullanıcının giriş yapıp yapmadığını kontrol edin
+      req.flash('error', 'Bu işlemi yapmaya yetkiniz yok.');
+      return res.redirect('/admin/users');
+    }
+  
+    try {
+      await User.destroy({ where: { id: req.params.id } });
+      req.flash('success', 'Kullanıcı silindi.');
+    } catch (error) {
+      req.flash('error', 'Kullanıcı silinemedi.');
+    }
+  
+    res.redirect('/admin/users');
+  };
+  

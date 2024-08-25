@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./user');
 
 const Message = sequelize.define('Message', {
   title: {
@@ -16,7 +15,5 @@ const Message = sequelize.define('Message', {
     allowNull: false,
   },
 });
-
-Message.belongsTo(User, { foreignKey: 'userId' });
 
 module.exports = Message;

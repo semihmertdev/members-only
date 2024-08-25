@@ -4,9 +4,8 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const sequelize = require('./config/database');
-const User = require('./models/user');
-const bcrypt = require('bcrypt'); // Burayı ekleyin
+const { sequelize, User } = require('./models');
+const bcrypt = require('bcrypt'); 
 
 const app = express();
 
@@ -29,12 +28,12 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Yanlış kullanıcı adı.' });
       }
-
+      
       const isValidPassword = await bcrypt.compare(password, user.password);
       if (!isValidPassword) {
         return done(null, false, { message: 'Yanlış şifre.' });
       }
-
+      
       return done(null, user);
     } catch (err) {
       return done(err);
@@ -64,5 +63,9 @@ const indexRoutes = require('./routes/index');
 
 app.use(authRoutes);
 app.use(indexRoutes);
+
+sequelize.sync({ alter: true })
+  .then(() => console.log('Database & tables created!'))
+  .catch(err => console.error('Error syncing database:', err));
 
 app.listen(3001, () => console.log('Sunucu 3001 portunda çalışıyor.'));
