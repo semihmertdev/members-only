@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kulübe Katıl</title>
+</head>
+<body>
+  <% if (error.length > 0) { %>
+    <div><%= error %></div>
+  <% } %>
+  <form action="/join" method="POST">
+    <input type="password" name="passcode" placeholder="Gizli Şifre" required>
+    <button type="submit">Katıl</button>
+  </form>
+</body>
+</html>
