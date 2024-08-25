@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kullanıcılar</title>
+</head>
+<body>
+  <h1>Kullanıcılar</h1>
+  <% if (users.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Ad Soyad</th>
+          <th>Kullanıcı Adı</th>
+          <th>Üyelik Durumu</th>
+          <th>Admin</th>
+          <th>Güncelle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.full_name %></td>
+            <td><%= user.username %></td>
+            <td><%= user.membership_status ? 'Aktif' : 'Pasif' %></td>
+            <td><%= user.is_admin ? 'Evet' : 'Hayır' %></td>
+            <td>
+              <form action="/admin/update-user/<%= user.id %>" method="POST">
+                <input type="checkbox" name="membership_status" <%= user.membership_status ? 'checked' : '' %>> Üyelik
+                <input type="checkbox" name="is_admin" <%= user.is_admin ? 'checked' : '' %>> Admin
+                <button type="submit">Güncelle</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>Henüz kullanıcı bulunmuyor.</p>
+  <% } %>
+</body>
+</html>

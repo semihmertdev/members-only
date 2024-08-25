@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const messageController = require('../controllers/messageController');
 const authController = require('../controllers/authController');
+const adminRoutes = require('./admin');
 
 // Tüm kullanıcıların erişebileceği yollar
 router.get('/login', (req, res) => res.render('login'));
@@ -22,6 +23,8 @@ router.get('/logout', (req, res) => {
   req.logout(); // Geri çağırma fonksiyonu olmadan
   res.redirect('/');
 });
+
+router.use('/admin', adminRoutes);
 
 // Giriş yapılmadan erişim sağlanmaması gereken yollar
 router.get('/', messageController.getAllMessages);
