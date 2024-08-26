@@ -1,3 +1,4 @@
+const moment = require('moment');
 const Message = require('../models/message');
 
 exports.createMessage = async (req, res) => {
@@ -19,8 +20,20 @@ exports.getAllMessages = async (req, res) => {
     return res.redirect('/login');
   }
 
-  const messages = await Message.findAll({ include: 'User' });
-  res.render('index', { messages });
+  try {
+    const messages = await Message.findAll({ include: 'User' });
+
+    // Format the timestamp using moment before rendering
+    const formattedMessages = messages.map(message => ({
+      ...message.dataValues,
+      formattedDate: moment(message.timestamp).format('DD/MM/YYYY HH:mm')
+    }));
+
+    res.render('index', { messages: formattedMessages });
+  } catch (error) {
+    req.flash('error', 'Mesajlar yüklenemedi.');
+    res.redirect('/');
+  }
 };
 
 exports.deleteMessage = async (req, res) => {

@@ -3,12 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Admin Dashboard | Members Only</title>
   <link rel="stylesheet" href="/styles/styles.css">
-
+  <link rel="shortcut icon" href="/images/brand.png" type="image/x-icon">
 </head>
 <body>
-  <h1>Admin Dashboard</h1>
-  <a href="/admin/users">Kullanıcılar</a>
+  <header>
+    <nav>
+      <% if (user) { %>
+        <p class="welcome">Welcome, <strong><%= user.full_name %></strong>!</p>
+        <div class="nav-links">
+          <a href="/" class="btn">Home</a>
+          <a href="/logout" class="btn">Log Out</a>
+        </div>
+      <% } %>
+    </nav>
+  </header>
+  <div class="admin-dash">
+    <h1>Admin Dashboard</h1>
+    <a href="/admin/users" class="dashboard-link">Users</a>
+  </div>
 </body>
 </html>

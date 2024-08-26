@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kulübe Katıl</title>
+  <title>Join Club | Members Only</title>
   <link rel="stylesheet" href="/styles/styles.css">
-
+  <link rel="shortcut icon" href="/images/brand.png" type="image/x-icon">
 </head>
 <body>
   <% if (error.length > 0) { %>
-    <div><%= error %></div>
+    <div class="error-message"><%= error %></div>
   <% } %>
-  <form action="/join" method="POST">
-    <input type="password" name="passcode" placeholder="Gizli Şifre" required>
-    <button type="submit">Katıl</button>
-  </form>
+  <div class="form-container">
+    <form action="/join" method="POST" class="join-form">
+      <input type="password" name="passcode" placeholder="Secret Passcode" required class="form-input">
+      <button type="submit" class="submit-button">Join</button>
+    </form>
+  </div>
 </body>
 </html>

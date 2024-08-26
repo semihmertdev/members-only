@@ -75,7 +75,18 @@ form {
 input {
   border-radius: 10px;
   border: 3px solid #2F4F4F;
-  padding: 3px 20px; /* Reduced left and right padding */
+  padding: 3px 20px;
+}
+
+textarea{
+  border: 3px solid #2F4F4F;
+  border-radius: 10px;
+  padding: 3px 20px;
+}
+
+textarea::placeholder{
+  color: #A9A9A9;
+  font-style: italic;
 }
 
 input::placeholder {
@@ -108,7 +119,7 @@ a:hover {
 }
 
 .error-message {
-  color: #FF6347; /* Tomato color for error messages to stand out */
+  color: #FF6347; 
 }
 
 .brand-logo{
@@ -116,4 +127,137 @@ a:hover {
   height: auto;
 }
 
+.container nav{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
 
+.nav-links{
+  display: flex;
+  gap: 20px;
+}
+
+.membership-status{
+  margin: 0 20px;
+}
+
+main{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.messages{
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  gap: 50px;
+  padding-top: 20px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  padding: 10px;
+  gap: 5px;
+  background-color: #2F4F4F;
+  border-radius: 10px;
+  color: #f0f0f0;
+  border: 3px inset #4A6969; 
+}
+
+.message:hover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  padding: 10px;
+  gap: 5px;
+  background-color: #1F3A3A;
+  border-radius: 10px;
+  color: #f0f0f0;
+  border: 3px outset #253F3F;
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.form-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.admin-dash{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.admin-dash a{
+  font-size: 1.5rem;
+}
+
+/* Styles for the page title */
+.page-title {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 24px;
+  color: #2F4F4F; /* Dark Slate Gray */
+}
+
+/* Styles for the user table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.user-table th, .user-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.user-table th {
+  background-color: #2F4F4F; /* Dark Slate Gray */
+  color: #fff;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Styles for forms within the table */
+.update-form, .delete-form {
+  display: inline;
+}
+
+/* Styles for the no users message */
+.no-users-message {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-top: 20px;
+}
+
+header nav{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+}

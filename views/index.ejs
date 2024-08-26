@@ -3,37 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesajlar</title>
+  <title>Messages | Members Only</title>
   <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="shortcut icon" href="/images/brand.png" type="image/x-icon">
 </head>
 <body>
   <div class="container">
     <header>
       <nav>
         <% if (user) { %>
-          <p class="welcome">Hoş geldiniz, <%= user.full_name %>!</p>
+          <p class="welcome">Welcome, <strong> <%= user.full_name %></strong>!</p>
           <div class="nav-links">
-            <a href="/new-message" class="btn">Yeni Mesaj</a>
-            <a href="/logout" class="btn">Çıkış Yap</a>
+            <a href="/new-message" class="btn">New Message</a>
             <% if (!user.membership_status) { %>
-              <a href="/join" class="btn btn-primary">Kulübe Katıl</a>
+              <a href="/join" class="btn btn-primary">Join the Club</a>
             <% } %>
+            <% if (user.is_admin) { %>
+              <a href="/admin/dashboard" class="btn">Admin Dashboard</a>
+            <% } %>
+            <a href="/logout" class="btn">Log Out</a>
           </div>
+          
         <% } else { %>
           <div class="nav-links">
-            <a href="/signup" class="btn">Kayıt Ol</a>
-            <a href="/login" class="btn">Giriş Yap</a>
+            <a href="/signup" class="btn">Sign Up</a>
+            <a href="/login" class="btn">Log In</a>
           </div>
         <% } %>
       </nav>
       <% if (user && user.membership_status) { %>
-        <p class="membership-status">Üyelik Durumu: Aktif</p>
+        <p class="membership-status">Membership Status: <strong>Active</strong></p>
       <% } %>
     </header>
 
     <main>
       <% if (user) { %>
-        <h1>Mesajlar</h1>
+        <h1>Messages</h1>
         <div class="messages">
           <% messages.forEach(message => { %>
             <div class="message">
@@ -42,15 +47,15 @@
               <% if (user.membership_status) { %>
                 <div class="message-details">
                   <% if (message.User) { %>
-                    <p class="author">Yazar: <%= message.User.full_name %></p>
+                    <p class="author">Author: <%= message.User.full_name %></p>
                   <% } else { %>
-                    <p class="author">Yazar bilgisi mevcut değil.</p>
+                    <p class="author">Author information not available.</p>
                   <% } %>
-                  <p class="date">Tarih: <%= message.timestamp %></p>
+                  <p class="date">Date: <%= message.formattedDate %></p>
                 </div>
                 <% if (user.is_admin) { %>
                   <form action="/delete-message/<%= message.id %>" method="POST">
-                    <button type="submit" class="btn btn-danger">Sil</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                   </form>
                 <% } %>
               <% } %>

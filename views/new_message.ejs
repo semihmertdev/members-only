@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yeni Mesaj</title>
+  <title>New Message | Members Only</title>
   <link rel="stylesheet" href="/styles/styles.css">
-
+  <link rel="shortcut icon" href="/images/brand.png" type="image/x-icon">
 </head>
 <body>
-  <form action="/new-message" method="POST">
-    <input type="text" name="title" placeholder="Başlık" required>
-    <textarea name="text" placeholder="Mesajınız" required></textarea>
-    <button type="submit">Gönder</button>
-  </form>
+  <div class="form-container">
+    <form action="/new-message" method="POST" class="message-form">
+      <input type="text" name="title" placeholder="Title" required class="form-input">
+      <textarea name="text" placeholder="Your Message" required class="form-textarea"></textarea>
+      <button type="submit" class="submit-button">Send</button>
+    </form>
+  </div>
 </body>
 </html>

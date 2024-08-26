@@ -3,50 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kullanıcılar</title>
+  <title>Users | Members Only</title>
   <link rel="stylesheet" href="/styles/styles.css">
-
+  <link rel="shortcut icon" href="/images/brand.png" type="image/x-icon">
 </head>
 <body>
-  <h1>Kullanıcılar</h1>
-  <% if (users.length > 0) { %>
-<table>
-    <thead>
-      <tr>
-        <th>Ad Soyad</th>
-        <th>Kullanıcı Adı</th>
-        <th>Üyelik Durumu</th>
-        <th>Admin</th>
-        <th>Güncelle</th>
-        <th>Sil</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% users.forEach(user => { %>
-        <tr>
-          <td><%= user.full_name %></td>
-          <td><%= user.username %></td>
-          <td><%= user.membership_status ? 'Aktif' : 'Pasif' %></td>
-          <td><%= user.is_admin ? 'Evet' : 'Hayır' %></td>
-          <td>
-            <form action="/admin/update-user/<%= user.id %>" method="POST">
-              <input type="checkbox" name="membership_status" <%= user.membership_status ? 'checked' : '' %>> Üyelik
-              <input type="checkbox" name="is_admin" <%= user.is_admin ? 'checked' : '' %>> Admin
-              <button type="submit">Güncelle</button>
-            </form>
-          </td>
-          <td>
-            <form action="/admin/delete-user/<%= user.id %>" method="POST">
-              <button type="submit">Sil</button>
-            </form>
-          </td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
+  <header>
+    <nav>
+      <% if (user) { %>
+        <p class="welcome">Welcome, <strong><%= user.full_name %></strong>!</p>
+        <div class="nav-links">
+          <a href="/" class="btn">Home</a>
+          <a href="/logout" class="btn">Log Out</a>
+        </div>
+      <% } %>
+    </nav>
+  </header>
   
+  <h1 class="page-title">Users</h1>
+  <% if (users.length > 0) { %>
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Membership Status</th>
+          <th>Admin</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+          <tr>
+            <td><%= user.full_name %></td>
+            <td><%= user.username %></td>
+            <td><%= user.membership_status ? 'Active' : 'Inactive' %></td>
+            <td><%= user.is_admin ? 'Yes' : 'No' %></td>
+            <td>
+              <form action="/admin/update-user/<%= user.id %>" method="POST" class="update-form">
+                <input type="checkbox" name="membership_status" <%= user.membership_status ? 'checked' : '' %>> Membership
+                <input type="checkbox" name="is_admin" <%= user.is_admin ? 'checked' : '' %>> Admin
+                <button type="submit" class="update-button">Update</button>
+              </form>
+            </td>
+            <td>
+              <form action="/admin/delete-user/<%= user.id %>" method="POST" class="delete-form">
+                <button type="submit" class="delete-button">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
   <% } else { %>
-    <p>Henüz kullanıcı bulunmuyor.</p>
+    <p class="no-users-message">No users found yet.</p>
   <% } %>
 </body>
 </html>
