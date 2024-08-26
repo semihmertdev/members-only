@@ -3,13 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kayıt Ol</title>
+  <title>Sign Up | Members Only</title>
   <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="shortcut icon" href="/images/brand.png" type="image/x-icon">
 </head>
 <body>
   <div class="signup-container">
-    <h1>Kayıt Ol</h1>
-    <p>Yeni bir hesap oluşturun ve topluluğumuza katılın!</p>
+    <div class="brand-logo">
+      <img src="/images/brand-modified.png" alt="brand">
+    </div>
+
+    <header>
+      <h1>Join Members Only</h1>
+      <p>Sign up to become a member!</p>
+    </header>
 
     <% if (error.length > 0) { %>
       <div class="error-message">
@@ -18,28 +25,14 @@
     <% } %>
 
     <form action="/signup" method="POST">
-      <label for="full_name">Ad Soyad</label>
-      <input type="text" id="full_name" name="full_name" required>
-
-      <label for="username">Kullanıcı Adı</label>
-      <input type="text" id="username" name="username" required>
-
-      <label for="password">Şifre</label>
-      <input type="password" id="password" name="password" required>
-
-      <label for="confirmPassword">Şifre (Tekrar)</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" required>
-
-      <label>
-        <input type="checkbox" name="terms" required>
-        <a href="/terms">Kullanım Şartları</a>'nı ve <a href="/privacy">Gizlilik Politikası</a>'nı kabul ediyorum.
-      </label>
-
-      <button type="submit">Kayıt Ol</button>
+      <input type="text" name="full_name" placeholder="Full Name" required>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
     </form>
 
-
-    <p>Zaten bir hesabınız var mı? <a href="/login">Giriş Yap</a></p>
+    <p>Already have an account? <a href="/login">Log In</a></p>
   </div>
 </body>
 </html>
