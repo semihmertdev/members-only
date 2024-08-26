@@ -20,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: #f0f0f0; /* Light background to contrast the dark elements */
   color: #2F4F4F; /* Base text color */
+  font-family: "Karla", sans-serif;
 }
 /*
   5. Improve media defaults
