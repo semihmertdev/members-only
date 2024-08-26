@@ -5,9 +5,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const { sequelize, User } = require('./models');
-const bcrypt = require('bcrypt'); 
+const bcrypt = require('bcrypt');
 
-const app = express();
+const app = express(); // 'app' değişkenini burada tanımlıyoruz
+
+app.use(express.static('public')); // 'app' değişkenini kullanarak statik dosyaları sunuyoruz
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
@@ -68,4 +70,7 @@ sequelize.sync({ alter: true })
   .then(() => console.log('Database & tables created!'))
   .catch(err => console.error('Error syncing database:', err));
 
-app.listen(3001, () => console.log('Sunucu 3001 portunda çalışıyor.'));
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
